@@ -7,7 +7,7 @@ import 'package:screen_project/screens/home/widget/search_input.dart';
 import 'package:screen_project/models/coffee.dart';
 
 class HomePage extends StatelessWidget{
-  final bottomList = ['home','menu','menu','user'];
+  final bottomList = ['home','menu','heart','user'];
 
   @override
   Widget build(BuildContext context) {
