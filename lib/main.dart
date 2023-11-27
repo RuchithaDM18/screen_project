@@ -4,14 +4,16 @@ import 'package:screen_project/screens/home/home.dart';
 
 
 void main(){
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget{
+  const MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent
     ));
     return MaterialApp(
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget{
       title: 'COFFEE SHOP',
       theme: ThemeData(
         backgroundColor: Color(0xFFFAFAFA),
-        primaryColor: Color(0xFFFFBD00),
+        primaryColor: const Color(0xFFFFBD00),
       ),
       home: HomePage(),
     );
