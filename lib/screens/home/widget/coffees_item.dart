@@ -11,12 +11,16 @@ class CoffeesItem extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTap: (){
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => DetailPage(coffees: coffees)),
+        onTap: () {
+          // print("Item tapped: ${coffees.title}");
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => DetailPage(coffees: coffees),
+            ),
           );
-    },
-      child: Card(
+        },
+
+        child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),

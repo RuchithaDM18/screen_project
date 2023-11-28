@@ -3,6 +3,7 @@ import 'package:screen_project/screens/detail/detail.dart';
 import 'package:screen_project/screens/home/widget/best_sell.dart';
 import 'package:screen_project/screens/home/widget/custom_app_bar.dart';
 import 'package:screen_project/screens/home/widget/new_arrival.dart';
+import 'package:screen_project/screens/home/widget/popular.dart';
 import 'package:screen_project/screens/home/widget/search_input.dart';
 import 'package:screen_project/models/coffee.dart';
 
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget{
             CustomAppBar(),
             SearchInput(),
             NewArrival(),
-            BestSell(),
+            Popular(),
           ],
         ),
       ),
