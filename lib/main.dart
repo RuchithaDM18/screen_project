@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:screen_project/screens/home/home.dart';
-import 'package:screen_project/screens/home/widget/FavoritesPage.dart';
+import 'package:screen_project/screens/home/widget/favouriteprovider.dart';
 
 void main() {
   runApp(

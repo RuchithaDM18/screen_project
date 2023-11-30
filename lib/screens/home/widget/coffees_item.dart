@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart'; // Import the provider package
-import 'FavoritesPage.dart';
+import 'package:provider/provider.dart';
 import 'package:screen_project/models/coffee.dart';
 import 'package:screen_project/screens/detail/detail.dart';
+import 'favouriteprovider.dart';
 
 class CoffeesItem extends StatefulWidget {
   final Coffees coffees;
