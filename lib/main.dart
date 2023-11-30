@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:screen_project/screens/home/home.dart';
 import 'package:screen_project/screens/home/widget/favouriteprovider.dart';
+import 'package:screen_project/screens/home/widget/favouriteprovider2.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => FavoritesProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+        ChangeNotifierProvider(create: (context) => FavoritesProvider2()),
+      ],
       child: const MyApp(),
     ),
   );
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

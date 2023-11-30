@@ -5,6 +5,7 @@ class BestSellers {
   final String imageUrl;
   final String ingredients;
   final String description;
+  bool isFavorite;
 
   BestSellers({
     required this.title,
@@ -13,6 +14,7 @@ class BestSellers {
     required this.imageUrl,
     required this.ingredients,
     required this.description,
+    this.isFavorite = false,
   });
 
   static List<BestSellers> generateBestSellers() {
@@ -41,7 +43,6 @@ class BestSellers {
         ingredients: 'Badam, milk, sugar, coffee powder',
         description: 'Indulge in the exquisite blend of badam and coffee. This Badam Coffee is a delightful combination of nutty flavors and aromatic coffee.',
       ),
-
       // Add more best sellers as needed
     ];
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:screen_project/screens/detail/widget/detail_app_bar.dart';
 
 import '../../models/bestsell.dart';
+import '../home/widget/favouriteprovider2.dart';
 
 class QuantityButton extends StatelessWidget {
   final int quantity;
@@ -71,6 +73,9 @@ class _DetailPage1State extends State<DetailPage1> {
 
   @override
   Widget build(BuildContext context) {
+    final favoritesProvider2 = Provider.of<FavoritesProvider2>(context);
+    bool isFavorite = favoritesProvider2.favorites.contains(widget.bestSellers);
+
     return Scaffold(
       appBar: AppBar(
         // Add the back button to the app bar
@@ -81,7 +86,21 @@ class _DetailPage1State extends State<DetailPage1> {
             Navigator.pop(context);
           },
         ),
-
+        actions: [
+          IconButton(
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: Colors.red,
+            ),
+            onPressed: () {
+              // Toggle the favorite status locally
+              favoritesProvider2.toggleFavorite(widget.bestSellers);
+              setState(() {
+                isFavorite = !isFavorite;
+              });
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

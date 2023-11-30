@@ -7,11 +7,14 @@ import 'package:screen_project/screens/home/widget/popular.dart';
 import 'package:screen_project/screens/home/widget/search_input.dart';
 import 'package:screen_project/models/coffee.dart';
 
+import '../../models/bestsell.dart';
+
 class HomePage extends StatelessWidget {
   final bottomList = ['home', 'menu', 'heart', 'user'];
 
   // Define coffeeList here
   final List<Coffees> coffeeList = Coffees.generateCoffees();
+  final List<BestSellers> bestSellersList = BestSellers.generateBestSellers();
 
   @override
   Widget build(BuildContext context) {
