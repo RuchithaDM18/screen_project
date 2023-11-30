@@ -1,77 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:screen_project/models//coffee.dart';
-
+import 'package:provider/provider.dart'; // Import the provider package
+import 'FavoritesPage.dart';
+import 'package:screen_project/models/coffee.dart';
 import 'package:screen_project/screens/detail/detail.dart';
 
-
-class CoffeesItem extends StatelessWidget{
+class CoffeesItem extends StatefulWidget {
   final Coffees coffees;
-  CoffeesItem(this.coffees, {super.key});
+
+  CoffeesItem(this.coffees, {Key? key}) : super(key: key);
+
+  @override
+  _CoffeesItemState createState() => _CoffeesItemState();
+}
+
+class _CoffeesItemState extends State<CoffeesItem> {
   @override
   Widget build(BuildContext context) {
+    final favoritesProvider = Provider.of<FavoritesProvider>(context);
+    bool isFavorite = favoritesProvider.favorites.contains(widget.coffees);
+
     return Container(
       child: GestureDetector(
         onTap: () {
-          // print("Item tapped: ${coffees.title}");
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => DetailPage(coffees: coffees),
+              builder: (context) => DetailPage(coffees: widget.coffees),
             ),
           );
         },
-
         child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.all(8),
-                  height: 150,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                        image: AssetImage(coffees.imageUrl),
-                        fit: BoxFit.fitHeight
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(8),
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: AssetImage(widget.coffees.imageUrl),
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                   ),
-                ),
-                Positioned(
-                  right: 20,
-                  top: 15,
-                  child: Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
+                  Positioned(
+                    right: 20,
+                    top: 15,
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.9),
-                        shape: BoxShape.circle),
-                    child: Icon(Icons.favorite,color: Colors.red,size: 15,),
+                        shape: BoxShape.circle,
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          // Toggle the favorite status globally
+                          favoritesProvider.toggleFavorite(widget.coffees);
+                        },
+                        child: Icon(
+                          isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: Colors.red,
+                          size: 15,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Text(coffees.title,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  height: 1.5),),
-            Text(coffees.subtitle,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  height: 1.5),),
-            Text(coffees.price,
-              style: TextStyle(
+                ],
+              ),
+              Text(
+                widget.coffees.title,
+                style: TextStyle(fontWeight: FontWeight.bold, height: 1.5),
+              ),
+              Text(
+                widget.coffees.subtitle,
+                style: TextStyle(fontWeight: FontWeight.bold, height: 1.5),
+              ),
+              Text(
+                widget.coffees.price,
+                style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
-                  height: 1.5),),
-          ],
+                  height: 1.5,
+                ),
+              ),
+            ],
+          ),
         ),
-       ),
       ),
     );
   }
-
 }

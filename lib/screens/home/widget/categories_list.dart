@@ -20,7 +20,6 @@ class CategoriesList extends StatelessWidget {
           Row(
             children: [
               Container(
-
                 child: TextButton(
                   onPressed: () {
                     Navigator.push(

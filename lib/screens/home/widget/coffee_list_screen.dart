@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:screen_project/models//coffee.dart';
+import 'package:screen_project/models/coffee.dart';
 import 'coffees_item.dart';
 
 class CoffeeListScreen extends StatelessWidget {

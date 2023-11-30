@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:screen_project/screens/home/widget/categories_list.dart';
-import 'package:screen_project/models//coffee.dart';
+import 'package:screen_project/models/coffee.dart';
 import 'package:screen_project/screens/home/widget/coffees_item.dart';
 
 class NewArrival extends StatelessWidget{

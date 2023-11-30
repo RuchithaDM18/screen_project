@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:screen_project/screens/detail/detail.dart';
-import 'package:screen_project/screens/home/widget/best_sell.dart';
+import 'package:screen_project/screens/home/widget/FavoritesPage.dart';
 import 'package:screen_project/screens/home/widget/custom_app_bar.dart';
 import 'package:screen_project/screens/home/widget/new_arrival.dart';
 import 'package:screen_project/screens/home/widget/popular.dart';
 import 'package:screen_project/screens/home/widget/search_input.dart';
 import 'package:screen_project/models/coffee.dart';
 
-class HomePage extends StatelessWidget{
-  final bottomList = ['home','menu','heart','user'];
+class HomePage extends StatelessWidget {
+  final bottomList = ['home', 'menu', 'heart', 'user'];
+
+  // Define coffeeList here
+  final List<Coffees> coffeeList = Coffees.generateCoffees();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,18 @@ class HomePage extends StatelessWidget{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomAppBar(),
-            SearchInput(),
+            SearchInput(
+              coffeesList: coffeeList,
+              onItemClicked: (selectedCoffee) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailPage(coffees: selectedCoffee),
+                  ),
+                );
+              },
+            ),
+
             NewArrival(),
             Popular(),
           ],
@@ -27,9 +41,20 @@ class HomePage extends StatelessWidget{
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: bottomList.map((e) => BottomNavigationBarItem(
-            label: e,icon: Image.asset('assets/icons/$e.png',width: 25,))).toList(),
+          label: e,
+          icon: Image.asset('assets/icons/$e.png', width: 25),
+        )).toList(),
+        onTap: (index) {
+          if (index == bottomList.indexOf('heart')) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FavouriteScreen(),
+              ),
+            );
+          }
+        },
       ),
     );
   }
-
 }
